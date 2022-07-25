@@ -19,7 +19,7 @@ lba <- function() {
     absolutePanel(
       top = 10, left = 20, style = "z-index:500; text-align: lwft;",
       tags$h1("Explore Left Behind Areas"),
-      tags$h5("Left Behind Areas are shaded red. Local authority are dashed lines.")
+      tags$h5("Left-behind areas are shaded red. Local authorities are dashed lines.")
     )
   )
   server <- function(input, output, session) {
