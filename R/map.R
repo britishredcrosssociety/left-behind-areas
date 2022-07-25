@@ -19,7 +19,7 @@ mapServer <- function(id) {
           setMaxBounds(-12, 49, 3.0, 61) |>
           htmlwidgets::onRender(
             "function(el, x) {
-            L.control.zoom({position:'topright'}).addTo(this);
+            L.control.zoom({position:'bottomleft'}).addTo(this);
              }"
           ) |>
           addPolygons(
