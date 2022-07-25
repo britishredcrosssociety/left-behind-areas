@@ -10,13 +10,18 @@ mapServer <- function(id) {
   moduleServer(id, function(input, output, session) {
     output$map <-
       renderLeaflet({
-        leaflet() |>
+        leaflet(options = leafletOptions(zoomControl = FALSE)) |>
           setView(lat = 52.75, lng = -2.0, zoom = 6) |>
           addProviderTiles(
             providers$CartoDB.Positron,
             options = providerTileOptions(minZoom = 6)
           ) |>
-          setMaxBounds(-12, 49, 3.0, 61) |> 
+          setMaxBounds(-12, 49, 3.0, 61) |>
+          htmlwidgets::onRender(
+            "function(el, x) {
+            L.control.zoom({position:'topright'}).addTo(this);
+             }"
+          ) |>
           addPolygons(
             data = boundaries_lba,
             label = ~lba_name,
@@ -32,14 +37,14 @@ mapServer <- function(id) {
               fillOpacity = 0.5,
               bringToFront = TRUE
             )
-          ) |> 
+          ) |>
           addPolygons(
             data = boundaries_ltla21,
             fill = FALSE,
             weight = 0.3,
             color = "#5C747A",
             dashArray = 2
-          ) 
+          )
       })
   })
 }
