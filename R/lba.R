@@ -1,4 +1,5 @@
 library(shiny)
+library(leaflet)
 
 lba <- function() {
   ui <- fluidPage(
