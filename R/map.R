@@ -11,10 +11,10 @@ mapServer <- function(id) {
     output$map <-
       renderLeaflet({
         leaflet(options = leafletOptions(zoomControl = FALSE)) |>
-          setView(lat = 52.75, lng = -2.0, zoom = 6) |>
+          setView(lat = 54, lng = -2.0, zoom = 7) |>
           addProviderTiles(
             providers$CartoDB.Positron,
-            options = providerTileOptions(minZoom = 6)
+            options = providerTileOptions(minZoom = 7)
           ) |>
           setMaxBounds(-12, 49, 3.0, 61) |>
           htmlwidgets::onRender(
