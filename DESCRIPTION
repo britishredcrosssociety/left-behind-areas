@@ -17,4 +17,5 @@ Depends:
 Imports: 
     leaflet,
     pkgload,
+    sf,
     shiny
