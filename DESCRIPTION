@@ -1,6 +1,6 @@
 Package: leftBehindAreas
 Title: Find left-behind areas
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: c(
     person("Mike", "Page", email = "mpage@redcross.org.uk", role = "cre"),
     person(family = "British Red Cross", role = "cph")
