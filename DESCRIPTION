@@ -9,8 +9,12 @@ Description: Shiny app that visualses left-behind areas.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Depends: 
     R (>= 2.10)
-LazyData: true
+Imports: 
+    shiny,
+    leaflet,
+    pkgload
