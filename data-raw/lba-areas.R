@@ -3,36 +3,28 @@ library(tidyverse)
 library(readxl)
 library(sf)
 library(geographr)
+library(IMD)
 
 # - raw -
 lba_england <-
-  read_excel("data-raw/lba-england.xlsx") |>
-  select(
-    ward17_code = `Ward Code`
-  )
+  cni_england_ward17 |> 
+  filter(`Left Behind Area?` == TRUE) |> 
+  select(ward17_code)
 
 lba_wales <-
-  read_excel("data-raw/lba-wales.xlsx") |>
-  select(
-    msoa11_code = MSOA
-  )
+  cni_wales_msoa11 |> 
+  filter(`Left Behind Area?` == TRUE) |> 
+  select(msoa11_code)
 
 lba_scotland <-
-  read_excel(
-    "data-raw/lba-scotland.xlsx"
-  ) |>
-  select(
-    iz11_code = `Area code`
-  ) |>
-  mutate(iz11_code = str_to_upper(iz11_code))
+  cni_scotland_iz11 |> 
+  filter(`Left Behind Area?` == TRUE) |> 
+  select(iz11_code)
 
 lba_ni <-
-  read_excel(
-    "data-raw/lba-ni.xlsx"
-  ) |>
-  select(
-    soa11_code = `LSOA code`
-  )
+  cni_northern_ireland_soa11 |> 
+  filter(`Left Behind Area?` == TRUE) |> 
+  select(soa11_code)
 
 # - Boundaries -
 # OCSI used 2017 wards
