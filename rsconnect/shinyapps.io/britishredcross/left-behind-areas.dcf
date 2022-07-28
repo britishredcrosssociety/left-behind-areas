@@ -5,10 +5,10 @@ account: britishredcross
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 6696708
-bundleId: 6134915
+bundleId: 6142687
 url: https://britishredcross.shinyapps.io/left-behind-areas/
-when: 1658849726.67431
-lastSyncTime: 1658849726.67432
+when: 1659026316.22706
+lastSyncTime: 1659026316.22706
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: data-raw/lba-areas.R|data-raw/ltla.R|README.md
