@@ -1,29 +1,36 @@
-# ---- Load libs ----
+# - Load libs -
 library(tidyverse)
 library(readxl)
 library(sf)
 library(geographr)
 library(IMD)
 
-# - raw -
+# -MSOA name lookup England & Wales -
+# Source: https://houseofcommonslibrary.github.io/msoanames/
+# Rationale: use identifiable place names in place of numeric system
+msoa_names <-
+  read_csv("https://houseofcommonslibrary.github.io/msoanames/MSOA-Names-1.17.csv") |>
+  select(msoa11_code = msoa11cd, msoa11_name = msoa11hclnm)
+
+# - LBA -
 lba_england <-
-  cni_england_ward17 |> 
-  filter(`Left Behind Area?` == TRUE) |> 
+  cni_england_ward17 |>
+  filter(`Left Behind Area?` == TRUE) |>
   select(ward17_code)
 
 lba_wales <-
-  cni_wales_msoa11 |> 
-  filter(`Left Behind Area?` == TRUE) |> 
+  cni_wales_msoa11 |>
+  filter(`Left Behind Area?` == TRUE) |>
   select(msoa11_code)
 
 lba_scotland <-
-  cni_scotland_iz11 |> 
-  filter(`Left Behind Area?` == TRUE) |> 
+  cni_scotland_iz11 |>
+  filter(`Left Behind Area?` == TRUE) |>
   select(iz11_code)
 
 lba_ni <-
-  cni_northern_ireland_soa11 |> 
-  filter(`Left Behind Area?` == TRUE) |> 
+  cni_northern_ireland_soa11 |>
+  filter(`Left Behind Area?` == TRUE) |>
   select(soa11_code)
 
 # - Boundaries -
@@ -49,7 +56,9 @@ boundaries_lba_england <-
 boundaries_lba_wales <-
   boundaries_msoa11 |>
   right_join(lba_wales) |>
-  rename(
+  select(msoa11_code) |>
+  left_join(msoa_names) |>
+  select(
     lba_name = msoa11_name,
     lba_code = msoa11_code
   )
@@ -82,7 +91,7 @@ boundaries_lba <-
 # Check areas plot correctly
 ggplot() +
   geom_sf(data = boundaries_ltla21, fill = NA, size = 0.1) +
-  geom_sf(data = lba_areas, fill = "red") +
+  geom_sf(data = boundaries_lba, fill = "red") +
   theme_minimal()
 
 # - Export -
