@@ -41,7 +41,7 @@ mapServer <- function(id) {
           addPolygons(
             data = boundaries_ltla21,
             fill = FALSE,
-            weight = 0.3,
+            weight = 0.6,
             color = "#5C747A",
             dashArray = 2
           )
